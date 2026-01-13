@@ -1,0 +1,14 @@
+{
+	"name":"piSCVI_test_tahoe",
+	"data_path": "/cluster/work/bewi/members/rquiles/experiments/datasets/3_cells_2_drugs_balanced_counts.h5ad",
+	"plot_initial": false,
+	"layer": null,
+	"cell_key" : "cell_name",
+	"batch_key" : "plate",
+	"likelihood": "zinb",
+	"activation": "relu",
+	"db": "kegg",
+	"batch_size": 256,
+	"max_epochs": 500,
+	"patience": 50
+}

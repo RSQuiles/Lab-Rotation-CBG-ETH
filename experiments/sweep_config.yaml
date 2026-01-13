@@ -1,0 +1,33 @@
+program: hyperparam_sweep.py
+project: sweep_1
+method: bayes
+metric:
+  name: Loss
+  goal: minimize
+parameters:
+  autoencoder_lr:
+    values: [0.003, 0.0003, 0.00003]
+
+  discriminator_lr:
+    values: [0.003, 0.0003, 0.00003]
+
+  omega0:
+    values: [0.1, 1 , 5, 10]
+
+  omega1:
+    values: [0.1, 1 , 5, 10]
+
+  omega2:
+    values: [0.1, 1, 5, 10]
+
+  ZX_dim:
+    values: [16, 32, 64]
+
+  ZXT_dim:
+    values: [16, 32, 64]
+
+  ZT_dim:
+    values: [16, 32, 64]
+
+  directory:
+    values: ["sweep_1"]

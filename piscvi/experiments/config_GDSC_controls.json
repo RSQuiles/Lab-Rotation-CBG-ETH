@@ -1,0 +1,14 @@
+{
+	"name":"GDSC_controls_sorted",
+	"data_path": "/cluster/scratch/rquiles/GDSC_control_counts.h5ad",
+	"plot_initial": false,
+	"layer": null,
+	"cell_key" : "cell_name",
+	"batch_key" : "plate",
+	"likelihood": "zinb",
+	"activation": "relu",
+	"db": "kegg",
+	"batch_size": 256,
+	"max_epochs": 500,
+	"patience": 20
+}

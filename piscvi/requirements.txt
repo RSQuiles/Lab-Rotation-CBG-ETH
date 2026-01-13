@@ -1,0 +1,53 @@
+# piscVI Environment Requirements
+# ================================
+# Core dependencies for running the pathway-informed scVI (piscVI) model
+
+# Core Scientific Computing
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+
+# Deep Learning Framework
+torch>=2.0.0
+lightning>=2.0.0  # PyTorch Lightning
+
+# Single-cell Analysis
+scanpy>=1.9.0
+anndata>=0.8.0
+scvi-tools>=1.0.0  # Main framework - provides scVI implementation and utilities
+
+# Machine Learning & Metrics
+scikit-learn>=1.0.0
+scib-metrics>=0.5.0  # Single-cell integration benchmarking metrics
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plottable>=0.1.5  # For table visualizations in benchmarking
+
+# Nearest Neighbors
+pynndescent>=0.5.8  # Fast nearest neighbor search
+
+# Utilities
+tqdm>=4.62.0  # Progress bars
+
+# Optional but Recommended
+# ========================
+# For GPU acceleration (if available)
+# torch with CUDA support - install separately based on your CUDA version
+# See: https://pytorch.org/get-started/locally/
+
+# Development Dependencies (optional)
+# ===================================
+# jupyter>=1.0.0
+# ipykernel>=6.0.0
+# black>=22.0.0  # Code formatting
+# pytest>=7.0.0  # Testing
+
+# Notes:
+# ------
+# 1. scvi-tools is the main dependency and will pull in many of the above packages
+# 2. For CUDA/GPU support, install PyTorch with the appropriate CUDA version first
+# 3. Some packages may require specific versions depending on your scvi-tools version
+# 4. The custom scib_core_gmm.py and scib_nmi_ari_gmm.py modules are included in src/
+#    and provide GMM-based clustering metrics not in standard scib-metrics

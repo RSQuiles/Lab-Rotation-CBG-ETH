@@ -1,0 +1,8 @@
+{
+	"cell_lines":["LS 180", "LoVo", "MIA PaCa-2", "NCI-H1573", "NCI-H1792", "NCI-H2030", "NCI-H2122", "NCI-H23", "NCI-H2347", "NCI-H596", "NCI-H661", "Panc 03.27", "RKO", "RPMI-7951", "SHP-77", "SK-MEL-2", "SNU-1", "SNU-423", "SW 1088", "SW 1271", "SW 900", "SW1417", "SW48"],
+    "drugs":["(S)-Crizotinib", "5-Fluorouracil", "Afatinib", "Belinostat", "Bexarotene", "Bicalutamide", "Bortezomib", "Cabozantinib (S-malate)", "Crizotinib (hydrochloride)", "Cytarabine", "Cytarabine (hydrochloride)", "Dabrafenib", "Docetaxel", "Docetaxel (Trihydrate)", "Doxorubicin (hydrochloride)", "Epirubicin (hydrochloride)", "Erlotinib", "Fulvestrant", "Gefitinib", "Gemcitabine", "Irinotecan", "Irinotecan (hydrochloride)", "Lapatinib ditosylate", "Lenalidomide (hemihydrate)", "Methotrexate", "Mitoxantrone (dihydrochloride)", "Osimertinib (mesylate)", "Oxaliplatin", "Paclitaxel", "Panobinostat", "Pemetrexed", "Ponatinib", "Rapamycin", "Rucaparib (phosphate)", "Sunitinib", "Temsirolimus", "Topotecan (hydrochloride)", "Trametinib", "Trametinib (DMSO_TF solvate)", "Vinblastine (sulfate)", "Vismodegib"],
+    "name": "GDSC_treated_2",
+    "normalize_total": true,
+    "log_transform": true,
+    "scale": false
+}

@@ -1,0 +1,73 @@
+{
+  "_comment": "Optimized configuration for large-scale FCR training",
+  
+  "seed": 42,
+  
+  "data_path": "/cluster/work/bewi/members/rquiles/experiments/datasets/sharded/3_cells_2_drugs.h5ad",
+  "_data_path": "/cluster/scratch/rquiles/GDSC_full/GSDC_1_2.h5ad",
+
+  
+  "perturbation_key": "Agg_Treatment",
+  "covariate_keys": "cell_name",
+  "control_key": "control",
+  "split_key": "split",
+  "dose_key": "dose",
+  "perturbation_input": "ohe",
+  "control_name": "DMSO_TF",
+  "embedded_dose": null,
+  "split": null,
+  
+  "embed_outcomes": true,
+  "embed_treatments": false,
+  "embed_covariates": true,
+  "separate_outcomes_emb": true,
+  
+  "dist_mode": "match",
+  "dist_outcomes": "normal",
+  "type_treatments": null,
+  "type_covariates": null,
+  "distance": "element",
+  
+  "omega0": 1.0,
+  "omega1": 10.0,
+  "omega2": 0.1,
+  "omega3": 10.0,
+  "omega4": 10.0,
+  
+  "batch_size": 2046,
+  "max_epochs": 500,
+  "checkpoint_freq": 5,
+  "adv_epoch": 5,
+  
+  "patience": 5,
+  
+  "cpu": false,
+  "gpu": true,
+  
+  "hparams": {
+    "ZX_dim": 32,
+    "ZT_dim": 32,
+    "ZXT_dim": 64,
+    
+    "outcome_emb_dim": 128,
+    "treatment_emb_dim": 64,
+    "covariate_emb_dim": 16,
+    
+    "encoder_width": 128,
+    "encoder_depth": 3,
+    "decoder_width": 128,
+    "decoder_depth": 3,
+    "discriminator_width": 64,
+    "discriminator_depth": 2,
+    
+		"autoencoder_lr": 3e-5,
+		"discriminator_lr": 3e-5,
+		"autoencoder_wd": 3e-4,
+		"discriminator_wd": 3e-4,
+		"discriminator_steps": 3,
+		"step_size_lr": 45,
+    
+    "_comment_sampling": "Disable MC sampling during training for speedup",
+    "sample_latent": true
+  }
+}

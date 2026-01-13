@@ -1,0 +1,8 @@
+{
+	"cell_lines":["A549", "AN3 CA", "SK-MEL-2"],
+    "drugs": ["Sapanisertib", "Trametinib"],
+    "name": "3_cells_2_drugs_balanced",
+    "normalize_total": true,
+    "log_transform": true,
+    "scale": true
+}

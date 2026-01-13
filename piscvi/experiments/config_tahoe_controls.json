@@ -1,0 +1,14 @@
+{
+	"name":"tahoe_controls_counts",
+	"data_path": "/cluster/work/bewi/data/tahoe100/h5ad/controls_merged.h5ad",
+	"plot_initial": false,
+	"layer": null,
+	"cell_key" : "cell_name",
+	"batch_key" : "plate",
+	"likelihood": "zinb",
+	"activation": "relu",
+	"db": "kegg",
+	"batch_size": 256,
+	"max_epochs": 50,
+	"patience": 20
+}

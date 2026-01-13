@@ -1,0 +1,8 @@
+{
+	"cell_lines":["MIA PaCa-2", "HS-578T", "HOP62", "A-172", "LOX-IMVI", "RPMI-7951", "H4", "A549", "A498", "BT-474", "CHP-212", "NCI-H2030", "LoVo", "LS 180", "SNU-1", "HCT15", "Hs 766T", "NCI-H1573", "SNU-423", "AsPC-1", "NCI-H460", "NCI-H23", "CFPAC-1", "HT-29", "COLO 205", "SW1417", "NCI-H1792", "RKO", "J82", "C-33 A", "C32", "NCI-H2347", "KATO III", "A-427", "SK-MEL-2", "SHP-77", "NCI-H661", "NCI-H2122", "NCI-H596"],
+    "drugs": ["5-Fluorouracil", "Afatinib", "Alectinib", "Axitinib", "Belinostat", "Bexarotene", "Bicalutamide", "Bleomycin", "Bortezomib", "Bosutinib", "Cabozantinib", "Carmustine", "Cetuximab", "Cisplatin", "Crizotinib", "Cyclophosphamide", "Cytarabine", "Dabrafenib", "Dactinomycin", "Dasatinib", "Docetaxel", "Doxorubicin", "Epirubicin", "Erlotinib", "Etoposide", "Fulvestrant", "Gefitinib", "Gemcitabine", "Ibrutinib", "Idelalisib", "Imatinib", "Irinotecan", "Lapatinib", "Lenalidomide", "Methotrexate", "Mitomycin-C", "Mitoxantrone", "Nelarabine", "Nilotinib", "Olaparib", "Osimertinib", "Oxaliplatin", "Paclitaxel", "Palbociclib", "Panobinostat", "Pazopanib", "Pemetrexed", "Ponatinib", "Rapamycin", "Rucaparib", "Ruxolitinib", "SN-38", "Sorafenib", "Sunitinib", "Tamoxifen", "Temozolomide", "Temsirolimus", "Teniposide", "Topotecan", "Trametinib", "Tretinoin", "Venetoclax", "Vinblastine", "Vincristine", "Vinorelbine", "Vismodegib", "Vorinostat", "Zoledronate"],
+    "name": "GDSC",
+    "normalize_total": true,
+    "log_transform": true,
+    "scale": false
+}

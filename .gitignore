@@ -1,0 +1,65 @@
+# ---- Cluster / SLURM ----
+sbatch_outputs/
+slurm-*.out
+slurm-*.err
+*.out
+*.err
+
+# ---- Environments ----
+.venv/
+venv/
+env/
+envs/
+conda/
+*.conda
+
+# ---- OS ----
+.DS_Store
+
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Data / large artifacts ----
+*.h5ad
+*.h5
+*.loom
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+*.parquet
+*.feather
+
+runs/
+saves/
+logs/
+plots/
+umaps/
+outputs/
+results/
+wandb/
+
+# ---- Specific folders ----
+piscvi/data/
+piscvi/piscvi/resources/
+
+# ---- Specific files ----
+zeroshot_amr/data/*.csv
+
+# ---- Secrets ----
+*.key
+*.pem
+*secret*
+*token*
+.env
+.env.*

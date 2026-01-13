@@ -1,0 +1,1 @@
+sbatch select_dataset.sh GDSC_treated_1.json /cluster/scratch/rquiles/ 3 5000

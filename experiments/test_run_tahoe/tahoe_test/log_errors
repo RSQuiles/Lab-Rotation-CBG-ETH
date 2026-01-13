@@ -1,0 +1,146 @@
+/cluster/home/rquiles/.bashrc: line 1: 0#: command not found
+{"training_args": {"name": "test_run", "artifact_path": "/cluster/home/rquiles/tahoe_test/model", "data_path": "/cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad", "graph_path": null, "cpu": false, "gpu": "0", "omega0": 1.0, "omega1": 10.0, "omega2": 0.1, "dist_outcomes": "normal", "dist_mode": "match", "distance": "element", "covariate_keys": null, "perturbation_key": null, "split": null, "hparams": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}, "seed": null, "batch_size": 128, "max_epochs": 2000, "patience": 20, "checkpoint_freq": 10, "eval_mode": "native", "num_outcomes": 4000, "num_treatments": 2, "num_covariates": [50]}}
+{"model_params": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}}
+
+Performing automatic train-test split with 0.2 ratio.
+Ranking genes for DE genes...
+Traceback (most recent call last):
+  File "fcr_method/main.py", line 60, in <module>
+    train(parse_arguments())
+  File "/cluster/home/rquiles/fcr_method/train/train.py", line 152, in train
+    if epoch % args["adv_epoch"]==0:
+KeyError: 'adv_epoch'
+
+
+------------------------- NEXT TRIAL -------------------------
+
+
+/cluster/home/rquiles/.bashrc: line 1: 0#: command not found
+{"training_args": {"name": "test_run", "artifact_path": "/cluster/home/rquiles/tahoe_test/model", "data_path": "/cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad", "graph_path": null, "cpu": false, "gpu": "0", "omega0": 1.0, "omega1": 10.0, "omega2": 0.1, "dist_outcomes": "normal", "dist_mode": "match", "distance": "element", "covariate_keys": null, "perturbation_key": null, "split": null, "hparams": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}, "seed": null, "batch_size": 128, "max_epochs": 2000, "patience": 20, "checkpoint_freq": 10, "eval_mode": "native", "adv_epoch": 5, "num_outcomes": 4000, "num_treatments": 2, "num_covariates": [50]}}
+{"model_params": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}}
+
+Performing automatic train-test split with 0.2 ratio.
+Ranking genes for DE genes...
+Traceback (most recent call last):
+  File "fcr_method/main.py", line 61, in <module>
+    train(parse_arguments())
+  File "/cluster/home/rquiles/fcr_method/train/train.py", line 169, in train
+    minibatch_training_stats = model.update_divergence(
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 575, in __getattr__
+    raise AttributeError("'{}' object has no attribute '{}'".format(
+AttributeError: 'FCR' object has no attribute 'update_divergence'
+
+
+------------------------- NEXT TRIAL -------------------------
+
+
+/cluster/home/rquiles/.bashrc: line 1: 0#: command not found
+{"training_args": {"name": "test_run", "artifact_path": "/cluster/home/rquiles/tahoe_test/model", "data_path": "/cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad", "graph_path": null, "cpu": false, "gpu": "0", "omega0": 1.0, "omega1": 10.0, "omega2": 0.1, "dist_outcomes": "normal", "dist_mode": "match", "distance": "element", "covariate_keys": null, "perturbation_key": null, "split": null, "hparams": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}, "seed": null, "batch_size": 128, "max_epochs": 2000, "patience": 20, "checkpoint_freq": 10, "eval_mode": "native", "adv_epoch": 5, "num_outcomes": 4000, "num_treatments": 2, "num_covariates": [50]}}
+{"model_params": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}}
+
+THCudaCheck FAIL file=/pytorch/aten/src/THC/THCGeneral.cpp line=50 error=100 : no CUDA-capable device is detected
+Performing automatic train-test split with 0.2 ratio.
+Ranking genes for DE genes...
+Traceback (most recent call last):
+  File "fcr_method/main.py", line 61, in <module>
+    train(parse_arguments())
+  File "/cluster/home/rquiles/fcr_method/train/train.py", line 163, in train
+    minibatch_training_stats = model.update(
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 1174, in update
+    cov_constr, treatment_constr = self.forward(expr_outcomes, treatments, control_outcomes, covariates)
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 1006, in forward
+    control_treatment = torch.zeros(treatments.shape, dtype=torch.float32, device="cuda")
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/cuda/__init__.py", line 197, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: cuda runtime error (100) : no CUDA-capable device is detected at /pytorch/aten/src/THC/THCGeneral.cpp:50
+
+
+------------------------- NEXT TRIAL -------------------------
+
+
+/cluster/home/rquiles/.bashrc: line 1: 0#: command not found
+{"training_args": {"name": "test_run", "artifact_path": "/cluster/home/rquiles/tahoe_test/model", "data_path": "/cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad", "graph_path": null, "cpu": false, "gpu": "0", "omega0": 1.0, "omega1": 10.0, "omega2": 0.1, "dist_outcomes": "normal", "dist_mode": "match", "distance": "element", "covariate_keys": null, "perturbation_key": null, "split": null, "hparams": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}, "seed": null, "batch_size": 128, "max_epochs": 2000, "patience": 20, "checkpoint_freq": 10, "eval_mode": "native", "adv_epoch": 5, "num_outcomes": 4000, "num_treatments": 2, "num_covariates": [50]}}
+{"model_params": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}}
+
+/var/spool/slurm/slurmd/state/job43665542/slurm_script: line 23: 2924565 Illegal instruction     python fcr_method/main.py --name test_run --data_path /cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad --artifact_path /cluster/home/rquiles/tahoe_test/model --hparams /cluster/home/rquiles/tahoe_test/hparams.json
+
+
+------------------------- NEXT TRIAL -------------------------
+
+
+/cluster/home/rquiles/.bashrc: line 1: 0#: command not found
+{"training_args": {"name": "test_run", "artifact_path": "/cluster/home/rquiles/tahoe_test/model", "data_path": "/cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad", "graph_path": null, "cpu": false, "gpu": "0", "omega0": 1.0, "omega1": 10.0, "omega2": 0.1, "dist_outcomes": "normal", "dist_mode": "match", "distance": "element", "covariate_keys": null, "perturbation_key": null, "split": null, "hparams": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}, "seed": null, "batch_size": 128, "max_epochs": 2000, "patience": 20, "checkpoint_freq": 10, "eval_mode": "native", "adv_epoch": 5, "num_outcomes": 4000, "num_treatments": 2, "num_covariates": [50]}}
+{"model_params": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}}
+
+Performing automatic train-test split with 0.2 ratio.
+Ranking genes for DE genes...
+Traceback (most recent call last):
+  File "fcr_method/main.py", line 61, in <module>
+    train(parse_arguments())
+  File "/cluster/home/rquiles/fcr_method/train/train.py", line 163, in train
+    minibatch_training_stats = model.update(
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 1174, in update
+    cov_constr, treatment_constr = self.forward(expr_outcomes, treatments, control_outcomes, covariates)
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 1007, in forward
+    ZX_control_constr = self.encode_ZX(control_outcomes, covariates)
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 364, in encode_ZX
+    outcomes = self.outcomes_embeddings(outcomes)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cluster/home/rquiles/fcr_method/model/module.py", line 79, in forward
+    out = self.network(x)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/container.py", line 100, in forward
+    input = module(input)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 87, in forward
+    return F.linear(input, self.weight, self.bias)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/functional.py", line 1370, in linear
+    ret = torch.addmm(bias, input, weight.t())
+RuntimeError: CUDA error: CUBLAS_STATUS_EXECUTION_FAILED when calling `cublasSgemm( handle, opa, opb, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc)`
+
+
+------------------------- NEXT TRIAL -------------------------
+
+
+/cluster/home/rquiles/.bashrc: line 1: 0#: command not found
+{"training_args": {"name": "test_run", "artifact_path": "/cluster/home/rquiles/tahoe_test/model", "data_path": "/cluster/home/rquiles/tahoe_test/test_anndata_filtered.h5ad", "graph_path": null, "cpu": false, "gpu": "0", "omega0": 1.0, "omega1": 10.0, "omega2": 0.1, "dist_outcomes": "normal", "dist_mode": "match", "distance": "element", "covariate_keys": null, "perturbation_key": null, "split": null, "hparams": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}, "seed": null, "batch_size": 128, "max_epochs": 2000, "patience": 20, "checkpoint_freq": 10, "eval_mode": "native", "adv_epoch": 5, "num_outcomes": 4000, "num_treatments": 2, "num_covariates": [50]}}
+{"model_params": {"latent_dim": 64, "latent_exp_dim": 192, "ZX_dim": 64, "ZT_dim": 64, "ZXT_dim": 64, "outcome_emb_dim": 256, "treatment_emb_dim": 64, "covariate_emb_dim": 16, "encoder_width": 128, "encoder_depth": 3, "decoder_width": 128, "decoder_depth": 3, "discriminator_width": 64, "discriminator_depth": 2, "autoencoder_lr": 0.0003, "discriminator_lr": 0.0003, "autoencoder_wd": 4e-07, "discriminator_wd": 4e-07, "discriminator_steps": 3, "step_size_lr": 45}}
+
+Performing automatic train-test split with 0.2 ratio.
+Ranking genes for DE genes...
+outcomes shape: torch.Size([128, 4000])
+outcomes_embeddings in_features: 4000
+Traceback (most recent call last):
+  File "fcr_method/main.py", line 61, in <module>
+    train(parse_arguments())
+  File "/cluster/home/rquiles/fcr_method/train/train.py", line 163, in train
+    minibatch_training_stats = model.update(
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 1176, in update
+    cov_constr, treatment_constr = self.forward(expr_outcomes, treatments, control_outcomes, covariates)
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 1009, in forward
+    ZX_control_constr = self.encode_ZX(control_outcomes, covariates)
+  File "/cluster/home/rquiles/fcr_method/model/model.py", line 366, in encode_ZX
+    outcomes = self.outcomes_embeddings(outcomes)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cluster/home/rquiles/fcr_method/model/module.py", line 79, in forward
+    out = self.network(x)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/container.py", line 100, in forward
+    input = module(input)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 87, in forward
+    return F.linear(input, self.weight, self.bias)
+  File "/cluster/home/rquiles/miniconda3/envs/fcr_8/lib/python3.8/site-packages/torch/nn/functional.py", line 1370, in linear
+    ret = torch.addmm(bias, input, weight.t())
+RuntimeError: CUDA error: CUBLAS_STATUS_EXECUTION_FAILED when calling `cublasSgemm( handle, opa, opb, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc)`
+
+
+------------------------- NEXT TRIAL -------------------------
+
+
