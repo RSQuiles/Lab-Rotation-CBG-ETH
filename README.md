@@ -1,8 +1,49 @@
-This repository contains the code files which were used to generate the results of the Lab Rotation I carried out in the Computational Biology Group (ETH, DBSSE) from September to December 2025 under the supervision of Marina Esteban Medina and Diane Duroux. It is organized in the following directories:
+# Lab Rotation — Computational Biology (ETH DBSSE)
 
-- data: contains the scripts used for the generation of and inspection of the different datasets used in the project, which are subsets of the Tahoe100M dataset.
-- experiments: contains the scripts and config files developed to run experiments in the context of the FCR method validation and scaling.
-- fcr: conatins the source code for the FCR method, adapted and extended from the paper "Learning Identifiable Factorized Causal Representations of Cellular Responses" (Mao et al., 2024).
-- piscvi: contains the scripts and source code used to train piscVI models, as well as to carry out the benchmarking of different embeddings (benchmark_rafa.py). It is mostly based on worked developed previously in the group by Marina Esteban Medina.
-- zeroshotamr: contains the source code of the ZeroShotAMR model, developed by Diane Duroux, as well as the scripts used to generate the necessary input files and to run the corresponding experiments in the context of the present project.
-- tests: contains scripts used perform different tests throughout the project.
+This repository contains the code used to generate the results of my **Lab Rotation** in the **Computational Biology Group**  
+(**ETH Zurich, DBSSE**) from **September–December 2025**.
+
+The project was carried out under the supervision of  
+**Marina Esteban Medina** and **Diane Duroux**.
+
+---
+
+## Repository Structure
+
+The repository is organized into the following directories:
+
+### `data/`
+Scripts for generating and inspecting the datasets used in the project.  
+All datasets are **subsets of the Tahoe100M dataset**.
+
+### `experiments/`
+Scripts and configuration files for running experiments related to  
+**FCR method validation and scaling**.
+
+### `fcr/`
+Source code for the **FCR method**, adapted and extended from:
+
+> *Learning Identifiable Factorized Causal Representations of Cellular Responses*  
+> Mao et al., 2024
+
+### `piscvi/`
+Scripts and source code for training **piscVI** models and benchmarking different embeddings  
+(e.g. `benchmark_rafa.py`).
+
+This module is largely based on prior work developed within the group by  
+**Marina Esteban Medina**.
+
+### `zeroshotamr/`
+Source code for the **ZeroShotAMR** model (developed by **Diane Duroux**), along with scripts to:
+- generate required input files  
+- run ZeroShotAMR experiments in the context of this project
+
+### `tests/`
+Utility scripts used to perform various tests throughout the project.
+
+---
+
+## ✨ Notes
+- All code is research-oriented and reflects experimental workflows.
+- Directory-level READMEs (where present) provide additional details.
+
