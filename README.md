@@ -1,4 +1,4 @@
-# Lab Rotation — Computational Biology (ETH DBSSE)
+# 🧬 Lab Rotation — Computational Biology (ETH DBSSE)
 
 This repository contains the code used to generate the results of my **Lab Rotation** in the **Computational Biology Group**  
 (**ETH Zurich, DBSSE**) from **September–December 2025**.
@@ -8,7 +8,7 @@ The project was carried out under the supervision of
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
 The repository is organized into the following directories:
 
