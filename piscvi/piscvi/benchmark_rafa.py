@@ -46,12 +46,18 @@ from fcr.validation.predictions import generate_embeddings
 BATCH_KEY = 'plate'
 CELL_TYPE_KEY = 'cell_name'
 
-def run_model(adata, 
+def run_model(adata,
+              adata_save=None, 
               activation="relu",
               masks=None,
               likelihood="zinb",
               #layer="X", 
               key="scVI"):
+
+    # Determine adata to save the resulting embeddings
+    if adata_save is None:
+        adata_save = adata
+
     #Check if model already exists
     if not os.path.exists(f"../results/models/{key}"):
         # Define model
@@ -101,15 +107,15 @@ def run_model(adata,
         with open(f"../results/models/{key}/train_time.txt", "w") as f:
             f.write(train_time)  
         
-        compute_metrics(model=model, adata=adata, key=key)
+        compute_metrics(model=model, adata=adata, adata_save=adata_save, key=key)
 
     else:
         print(f"Model {key} already exists, proceeding to compute metrics.", flush=True)
-        compute_metrics(adata=adata, key=key)
+        compute_metrics(adata=adata, adata_save=adata_save, key=key)
     
-    return adata
+    return adata_save
 
-def compute_metrics(adata, key, model=None):
+def compute_metrics(adata, adata_save, key, model=None):
     if model is None:
         model = InformedSCVI.load(f"../results/models/{key}", adata=adata)
 
@@ -118,7 +124,7 @@ def compute_metrics(adata, key, model=None):
 
     # Save latent representation
     latent = model.get_latent_representation()
-    adata.obsm[f"X_{key}"] = latent
+    adata_save.obsm[f"X_{key}"] = latent
 
     plot_loss(model, save_path=f"../results/figures/{key}/loss.png")
 
@@ -208,7 +214,7 @@ adata = adata[idx].copy()
 n_hvg_scvi = 5000
 sorted_genes = (adata.var.sort_values("highly_variable_rank").index)
 selected = sorted_genes[:n_hvg_scvi]
-adata = adata[:, selected].copy()
+adata_hvgs = adata[:, selected].copy()
 
 # adata.var_names = adata.var['gene_name'].copy()
 
@@ -305,7 +311,8 @@ print('Starting scVI models at', time.strftime("%Y-%m-%d %H:%M:%S", time.localti
 # Standard scVI
 key = "scVI_hvg"
 adata = run_model(
-    adata,
+    adata_hvgs,
+    adata_save=adata,
     key=key,
 )
 all_keys.append(key)
@@ -342,7 +349,7 @@ masks_keggNB_pathways_rnd = [rnd_genes_per_pathway]
 # KEGG masks
 print("Computing KEGG masks...")
 genes_per_pathway, genes_per_circuit, circuits_per_pathway = get_pathway_masks(db="KEGG")
-adata, genes_per_pathway, genes_per_circuit, circuits_per_pathway = filter_genes(adata, genes_per_pathway, genes_per_circuit, circuits_per_pathway)
+adata_kegg, genes_per_pathway, genes_per_circuit, circuits_per_pathway = filter_genes(adata, genes_per_pathway, genes_per_circuit, circuits_per_pathway)
 frac = genes_per_circuit.sum(axis=1).mean() / genes_per_circuit.shape[1]
 print(f"Fraction of genes per circuit KEGG: {frac:.2f}", flush=True)
 print(f"Number of genes KEGG: {genes_per_circuit.shape[1]}", flush=True)
@@ -352,7 +359,7 @@ masks_kegg = [genes_per_circuit, circuits_per_pathway]
 # Reactome masks
 print("Computing Reactome masks...")
 genes_per_pathway, genes_per_circuit, circuits_per_pathway = get_pathway_masks(db="Reactome")
-adata, genes_per_pathway, genes_per_circuit, circuits_per_pathway = filter_genes(adata, genes_per_pathway, genes_per_circuit, circuits_per_pathway)
+adata_reactome, genes_per_pathway, genes_per_circuit, circuits_per_pathway = filter_genes(adata, genes_per_pathway, genes_per_circuit, circuits_per_pathway)
 frac = genes_per_pathway.sum(axis=1).mean() / genes_per_pathway.shape[1]
 print(f"Fraction of genes per pathway Reactome: {frac:.2f}", flush=True)
 print(f"Number of genes Reactome: {genes_per_pathway.shape[1]}", flush=True)
@@ -362,15 +369,17 @@ masks_reactome = [genes_per_pathway]
 adata = adata.copy()
 
 # Run different models
+adata_list = [adata_kegg, adata_reactome, adata_kegg, adata_reactome]
 masks_list = [masks_kegg, masks_reactome, masks_kegg, masks_reactome]
 distributions_list = ["zinb", "zinb", "zinb", "zinb"]
 activations_list = ["tanh", "tanh", "relu","relu"]
 keys_list = ["piscVI_kegg_tanh", "piscVI_reactome_tanh", "piscVI_kegg_relu", "piscVI_reactome_relu"]
 
-for masks, distribution, activation, key in zip(masks_list, distributions_list, activations_list, keys_list):
+for adata_, masks, distribution, activation, key in zip(adata_list, masks_list, distributions_list, activations_list, keys_list):
     print(f"Running model {key} with masks {[mask.shape for mask in masks]} and {activation} activation", flush=True)
     adata = run_model(
-        adata,
+        adata_,
+        adata_save=adata,
         key=key,
         masks=masks,
         likelihood=distribution,
@@ -394,7 +403,7 @@ for key in all_keys:
 all_metrics.to_csv("../results/models/all_metrics.csv", index=False)
 """
 
-#Benchmark
+# Benchmark
 all_keys = [f"X_{key}" for key in all_keys]
 all_keys.extend(fcr_keys)
 
@@ -406,18 +415,15 @@ for var in ['cell_name']:
         adata,
         batch_key=BATCH_KEY,
         label_key=var,
-        bio_conservation_metrics=BioConservation(
-            # metrics=["nmi_ari_cluster_labels_kmeans", "silhouette_label"]
-            ),
-        batch_correction_metrics=BatchCorrection(
-            # metrics=["graph_connectivity", "pcr_comparison"]
-            ),
+        bio_conservation_metrics=BioConservation(),
+        batch_correction_metrics=BatchCorrection(kbet_per_label=False),
         embedding_obsm_keys=all_keys,
         n_jobs=1,
     )
     bm.benchmark()
     print(f"Completed benchmark for {var}")
 
-    bm_dir = "../results/benchmark/"
+    # bm_dir = "../results/benchmark/"
+    bm_dir = "/cluster/home/rquiles/benchmark/"
     os.makedirs(bm_dir, exist_ok=True)
     bm.plot_results_table(min_max_scale=False, save_dir=bm_dir)

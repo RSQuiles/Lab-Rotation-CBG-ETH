@@ -46,5 +46,5 @@ for dir in "$LOG_DIR"/*/; do
     srun uv run python -u evaluate_prediction.py \
         --group "$GROUP" \
         --name "$NAME" \
-        --per_line_drug
+        --per_line
 done

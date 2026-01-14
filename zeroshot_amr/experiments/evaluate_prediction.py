@@ -15,6 +15,9 @@ def generate_sets(args):
     pred_name = f"../experiments/outputs/{args.group}/{args.name}_DRIAMS-any_specific_results/test_set_seed0.csv"
     print(f"Loading predictions from {pred_name}...")
     pred = pd.read_csv(pred_name)
+    # Eliminate duplicate entries (for duplicate drugs)
+    print("Eliminating duplicate entries...")
+    pred.drop_duplicates(inplace=True)
     df = pd.read_csv("../data/combined_long_table.csv")
     splits = pd.read_csv("../data/data_splits.csv")
 
@@ -184,12 +187,74 @@ def compute_mcc_per_cellline_drug(df, args, set_name, output_dir, threshold=0.5,
 
     out = pd.DataFrame(rows)
 
-    # Save per-run table
-    out_path = f"{output_dir}/mcc_per_cellline_drug_{args.group}_{args.name}_{set_name}.csv"
-    out.to_csv(out_path, index=False)
+    os.makedirs(output_dir, exist_ok=True)
+    out_path = f"{output_dir}/mcc_per_cellline_drug_{args.group}.csv"
+
+    if not os.path.exists(out_path):
+        metrics_df = pd.DataFrame(columns=["cell_line", "drug", "MCC", "zero_shot_split_type", "drug_embedding", "cell_embedding", "true_prop_sensitive", "true_prop_resistant", "n_observations"])
+        metrics_df.to_csv(out_path, index=False)
+    
+    metrics_df = pd.read_csv(out_path)
+    metrics_df = pd.concat([metrics_df, out], ignore_index=True)
+
+    # Save table
+    metrics_df.to_csv(out_path, index=False)
     print(f"Saved: {out_path}")
 
-    return out
+    return metrics_df
+
+# Compute MCC per cell line
+def compute_mcc_per_cellline(df, args, set_name, output_dir, threshold=0.5, min_n=5):
+    """
+    df must contain: species, drug, experiment, response, Predictions
+    """
+    rows = []
+
+    # group by cell line and drug
+    for cell_line, g in df.groupby(["species"]):
+        y_true = g["response"].astype(int).values
+        y_score = g["Predictions"].values
+        y_hat = (y_score > threshold).astype(int)
+
+        n = len(g)
+        pos_prop = float(np.mean(y_true))  # proportion of sensitive (assuming 1 = sensitive)
+        neg_prop = 1.0 - pos_prop
+
+        # MCC edge case: if only one class present, MCC is not informative
+        # sklearn returns 0.0 in many of these cases; we can mark as NaN instead.
+        if len(np.unique(y_true)) < 2 or n < min_n:
+            mcc = np.nan
+        else:
+            mcc = matthews_corrcoef(y_true, y_hat)
+
+        rows.append({
+            "cell_line": cell_line,
+            "MCC": mcc,
+            "zero_shot_split_type": set_name,     # or use g["experiment"].iloc[0]
+            "drug_embedding": args.group,         # fingerprint name in your codebase
+            "cell_embedding": args.name,          # pcs_10 / hvgs_1000 / piscvi etc
+            "true_prop_sensitive": pos_prop,
+            "true_prop_resistant": neg_prop,
+            "n_observations": n,
+        })
+
+    out = pd.DataFrame(rows)
+
+    os.makedirs(output_dir, exist_ok=True)
+    out_path = f"{output_dir}/mcc_per_cellline_{args.group}.csv"
+
+    if not os.path.exists(out_path):
+        metrics_df = pd.DataFrame(columns=["cell_line", "MCC", "zero_shot_split_type", "drug_embedding", "cell_embedding", "true_prop_sensitive", "true_prop_resistant", "n_observations"])
+        metrics_df.to_csv(out_path, index=False)
+    
+    metrics_df = pd.read_csv(out_path)
+    metrics_df = pd.concat([metrics_df, out], ignore_index=True)
+
+    # Save table
+    metrics_df.to_csv(out_path, index=False)
+    print(f"Saved: {out_path}")
+
+    return metrics_df
 
 
 if __name__=="__main__":
@@ -207,6 +272,11 @@ if __name__=="__main__":
         action="store_true",
         help="Whether to evaluate per line-drug combination",
     )
+    parser.add_argument(
+        "--per_line",
+        action="store_true",
+        help="Whether to evaluate per line",
+    )
     args = parser.parse_args()
 
     sets = generate_sets(args)
@@ -218,19 +288,25 @@ if __name__=="__main__":
     for set_name, df in sets.items():
         print(f"Evaluating set: {set_name}...")
 
-        if not args.per_line_drug:
+        if args.per_line:
+            print(f"Analyzing MCC per cell line for: {set_name}...")
+            df = df[["species", "experiment", "response", "Predictions"]].copy()
+            compute_mcc_per_cellline(df, args, set_name, output_dir, threshold=0.5, min_n=5)
+
+        # Analyze MCC per cell line - drug combination
+        elif args.per_line_drug:
+            print(f"Analyzing MCC per cell line - drug combination for: {set_name}...")
+            df = df[["species", "drug", "experiment", "response", "Predictions"]].copy()
+            compute_mcc_per_cellline_drug(df, args, set_name, output_dir, threshold=0.5, min_n=5)
+
+        else:
             df = df[["response", "Predictions"]]
             y_true, y_pred = df["response"], df["Predictions"]
 
             plot_prc(df, args, set_name, output_dir)
             plot_roc(df, args, set_name, output_dir)
             bal_acc, mcc = compute_additional_metrics(y_true, y_pred, set_name, output_dir)
-        
-        # Analyze MCC per cell line - drug combination
-        else:
-            print(f"Analyzing MCC per cell line - drug combination for: {set_name}...")
-            df = df[["species", "drug", "experiment", "response", "Predictions"]].copy()
-            compute_mcc_per_cellline_drug(df, args, set_name, output_dir, threshold=0.5, min_n=5)
+
 
 
 
